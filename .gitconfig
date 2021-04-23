@@ -1,0 +1,52 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Dan
+	email = dan91johnson@gmail.com
+
+
+
+[push]
+  default = current                   # Never have to set upstream when pushing a new branch
+
+[pull]
+  rebase = true
+
+[alias]
+  ap = add --patch                    # add to/stage commits chunk by chunk
+  b = branch -v                       # branch (verbose)
+  co = checkout                       # checkout
+  cp = cherry-pick -x                 # cherry-pick/grab a change from a branch
+  d = diff                            # diff unstaged changes
+  dl = diff HEAD^                     # diff last committed change
+  pl = pull                           # pull
+  ps = push                           # push
+  pp = !git pull --rebase && git push # push and rebase
+  s = status                          # status
+
+  uncommit = reset --soft HEAD^       # go back before last commit, with files in uncommitted state
+  mt = mergetool                      # fire up the merge tool
+
+  l = log --graph --date=short
+
+  # Longer commands -----------------------------
+
+  gpurge = !git fetch origin --prune && git branch --merged | grep -v master | xargs git branch -d
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[color "status"]
+  added = green
+  changed = red bold
+  untracked = magenta bold
+
+[color "branch"]
+  remote = yellow
